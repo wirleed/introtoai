@@ -12,14 +12,33 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse import hstack
 
+import streamlit as st
+import requests
+
 def get_timezone(lat, lng, api_key):
-    url = ("http://api.timezonedb.com/v2.1/get-time-zone"
-           f"?key={api_key}&format=json&by=position&lat={lat}&lng={lng}")
-    resp = requests.get(url)
-    data = resp.json()
+    url = (
+        "http://api.timezonedb.com/v2.1/get-time-zone"
+        f"?key={api_key}&format=json&by=position&lat={lat}&lng={lng}"
+    )
+    response = requests.get(url)
+    data = response.json()
     if data["status"] == "OK":
         return data["zoneName"]
-    return None
+    return "Could not find timezone"
+
+st.title("🌍 Time Zone Lookup")
+
+# User inputs
+lat = st.number_input("Enter Latitude", value=28.6139)
+lng = st.number_input("Enter Longitude", value=77.2090)
+
+# Button to trigger timezone lookup
+if st.button("Get Time Zone"):
+    try:
+        tz = get_timezone(lat, lng, st.secrets["TZDB_KEY"])
+        st.success(f"Timezone: {tz}")
+    except Exception as e:
+        st.error(f"Error: {e}")
 
 def fetch_place_images(place_name):
     PIXABAY_API_KEY = "50959863-a3fc0be1d932d4de9f9fb802b"  # Use your key
