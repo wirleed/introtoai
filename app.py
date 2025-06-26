@@ -4,7 +4,7 @@ import random
 import difflib
 import requests
 from datetime import datetime
-from timezonefinderL import TimezoneFinder
+from timezonefinder import TimezoneFinder
 import pytz
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import MinMaxScaler
