@@ -37,7 +37,7 @@ smmap
 streamlit
 tenacity
 threadpoolctl
-timezonefinder==6.2.0
+timezonefinder==5.2.0
 toml
 tornado
 typing_extensions
