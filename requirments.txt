@@ -17,7 +17,7 @@ jsonschema
 jsonschema-specifications
 MarkupSafe
 narwhals
-numpy
+numpy==1.23.5
 packaging
 pandas
 pillow
@@ -37,7 +37,7 @@ smmap
 streamlit
 tenacity
 threadpoolctl
-timezonefinder
+timezonefinder==6.2.0
 toml
 tornado
 typing_extensions
