@@ -4,7 +4,17 @@ import random
 import difflib
 import requests
 from datetime import datetime
-from timezonefinder import TimezoneFinder
+import requests
+from datetime import datetime
+
+def get_timezone(lat, lng, api_key):
+    url = ("http://api.timezonedb.com/v2.1/get-time-zone"
+           f"?key={api_key}&format=json&by=position&lat={lat}&lng={lng}")
+    resp = requests.get(url)
+    data = resp.json()
+    if data["status"] == "OK":
+        return data["zoneName"]
+    return None
 import pytz
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import MinMaxScaler
