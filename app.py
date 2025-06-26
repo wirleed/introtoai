@@ -6,6 +6,11 @@ import requests
 from datetime import datetime
 import requests
 from datetime import datetime
+import pytz
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics.pairwise import cosine_similarity
+from scipy.sparse import hstack
 
 def get_timezone(lat, lng, api_key):
     url = ("http://api.timezonedb.com/v2.1/get-time-zone"
@@ -15,11 +20,6 @@ def get_timezone(lat, lng, api_key):
     if data["status"] == "OK":
         return data["zoneName"]
     return None
-import pytz
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics.pairwise import cosine_similarity
-from scipy.sparse import hstack
 
 def fetch_place_images(place_name):
     PIXABAY_API_KEY = "50959863-a3fc0be1d932d4de9f9fb802b"  # Use your key
