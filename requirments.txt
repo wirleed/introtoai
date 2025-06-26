@@ -37,7 +37,11 @@ smmap
 streamlit
 tenacity
 threadpoolctl
-timezonefinderL
+streamlit
+pandas
+numpy
+pillow
+requests
 toml
 tornado
 typing_extensions
